@@ -3,8 +3,7 @@
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
 import { Input } from '@/src/components/Input';
-import { ProjectDTO,ProjectType } from '@/src/types/projects';
-
+import { ProjectDTO, ProjectType } from '../../../../types/project';
 
 export default function CreateProjectPage() {
   const {

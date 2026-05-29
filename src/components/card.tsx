@@ -1,10 +1,10 @@
-import { Project } from '../types/projects';
+import { Project } from '../types/project';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-  import { FaGithub } from 'react-icons/fa6';
+import { FaGithub } from 'react-icons/fa6';
 
-export function HighlightProjectCard({ project, index }: { project: Project, index: number}) {
+export function HighlightProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <article key={project.id} className={`bg-secondary default-shadow appear group overflow-hidden rounded-2xl border border-zinc-800/50 ${index === 1 ? 'xl:translate-y-16' : ''}`}>
       {/* IMAGE */}
@@ -64,7 +64,7 @@ type ContactCardProps = {
   external?: boolean;
 };
 
- export function ContactCard({ href, icon, title, description, external }: ContactCardProps) {
+export function ContactCard({ href, icon, title, description, external }: ContactCardProps) {
   return (
     <Link href={href} target={external ? '_blank' : undefined} className="group bg-secondary hover:border-violet-600/50 flex items-center justify-between gap-4 rounded-md border border-zinc-800 p-4 transition-all duration-300 sm:p-5">
       <div className="flex min-w-0 items-center gap-4">

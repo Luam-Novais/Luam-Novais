@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, GitCommit } from 'lucide-react';
-import { Project } from '../../types/projects';
+import { Project } from '../../types/project';
 import { HighlightProjectCard } from '@/src/components/card';
 
 export enum ProjectType {
@@ -35,7 +35,7 @@ export default async function FeaturedProjectsSection() {
 
         {/* PROJECTS */}
         <ul className="grid grid-cols-1 gap-10 xl:grid-cols-2">
-          {featuredProjects.map((project, index)=>{
+          {featuredProjects.map((project, index) => {
             return (
               <li key={project.id}>
                 <HighlightProjectCard project={project} index={index} />
