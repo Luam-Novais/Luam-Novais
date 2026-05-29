@@ -2,9 +2,13 @@
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
 import { Input } from '@/src/components/Input';
-import { ProjectType } from '@/src/types/project';
-import type {ProjectDTO } from '@/src/types/project.d.ts';
+import type { ProjectDTO } from '@/src/types/project.d.ts';
 
+enum ProjectType {
+  web = 'web',
+  mobile = 'frontend',
+  backend = 'backend',
+}
 export default function CreateProjectPage() {
   const {
     register,
