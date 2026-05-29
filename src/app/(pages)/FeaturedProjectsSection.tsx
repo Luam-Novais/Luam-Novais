@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, GitCommit } from 'lucide-react';
-import { Project } from '../../types/project';
+import type { Project } from '../../types/project.d.ts';
 import { HighlightProjectCard } from '@/src/components/card';
 
 export enum ProjectType {

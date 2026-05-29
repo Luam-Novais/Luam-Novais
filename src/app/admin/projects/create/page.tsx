@@ -1,9 +1,9 @@
 'use client';
-
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
 import { Input } from '@/src/components/Input';
-import { ProjectDTO, ProjectType } from '../../../../types/project';
+import { ProjectType } from '@/src/types/project';
+import type {ProjectDTO } from '@/src/types/project.d.ts';
 
 export default function CreateProjectPage() {
   const {
