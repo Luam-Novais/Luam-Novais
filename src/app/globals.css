@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+
+@theme{
+  --font-poppins: var(--font-poppins)
+  --font-inter: var(--font-inter)
+}
+:root {
+  --bg: var(--color-zinc-950);
+  --bg-secondary: var(--color-zinc-900);
+  --title: var(--color-zinc-100);
+  --text: var(--color-zinc-300);
+}
+
+.light-theme {
+  --bg: var(--color-zinc-100);
+  --bg-secondary: var(--color-zinc-200);
+  --title: var(--color-zinc-950);
+  --text: var(--color-zinc-700);
+}
+
+.default-layout {
+  @apply min-h-screen w-full;
+  background-color: var(--bg);
+}
+.default-shadow{
+  @apply shadow-xl shadow-black/20;
+}
+.title{
+  color: var(--title);
+  @apply capitalize font-poppins  text-4xl md:text-5xl
+}
+.text{
+  color: var(--text);
+  font-family: var(--font-inter);
+}
+.bg-primary{
+  background-color: var(--bg);
+}
+.bg-secondary{
+  background-color: var(--bg-secondary);
+}
+.primary-btn{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 48px;
+  background-color: var(--color-violet-600);
+  color: var(--color-violet-50);
+  border-radius: 6px;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: var(--font-poppins);
+  transition:all 0.6s ease-in-out;
+
+  &:hover{
+      background-color: var(--color-violet-950);
+      color: var(--color-violet-50);
+  }
+}
+.header-link{
+  @apply flex gap-2 transition-all duration-300 ease-in-out;
+  &:hover{
+    @apply text-violet-600;
+  }
+}
+.appear{
+  animation: appearInTop 1s forwards ease-in-out ;
+}
+.scroll-bar{
+  animation: scrollBar 4s infinite ease-in-out ;
+}
+@keyframes appearInTop {
+  from{
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes scrollBar {
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(20px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+.overlay {
+  position: fixed;
+  right:0px;
+  bottom: 0px;
+  z-index: 999;
+  width: 0px;
+  height: 100%;
+  animation: reveal 1s ease-in-out forwards;
+}
+@keyframes reveal {
+  0% {
+    border-radius: 100px 0px 0px 0px ;
+    right: 0px;
+    width: 0px;
+  }
+  50% {
+    width: 100%;
+    
+  }
+  70% {
+    width: 100%;
+  }
+  
+  100% {
+    border-radius: 0px 0px 100px 0px ;
+    left: 0px;
+    width: 0px;
+  }
+}
+
+/* @keyframes reveal {
+  0% {
+    border-radius: 200px 200px 0px 0px ;
+    bottom: 0px;
+    height: 0px;
+  }
+  50% {
+    height: 100%;
+    
+  }
+  70% {
+    height: 100%;
+    border-radius: 0px 0px 200px 200px ;
+  }
+  
+  100% {
+    border-radius: 0px 0px 200px 200px ;
+    top: 0px;
+    height: 0px;
+  }
+} */
