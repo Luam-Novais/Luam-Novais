@@ -1,4 +1,3 @@
-'use client'
 import Header from '../components/Header';
 import Hero from './(pages)/Hero';
 import { ContactSection } from './(pages)/Contact';

@@ -1,6 +1,6 @@
 'use client';
 import { Moon, Sun } from 'lucide-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 export function ScrollBar() {
   return (
@@ -11,13 +11,12 @@ export function ScrollBar() {
 }
 
 export function ThemeSwitch() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (document.body.classList.contains('light-theme')) {
-      return 'light';
-    } else {
-      return 'dark';
-    }
-  });
+  const [theme, setTheme] = useState<'dark' | 'light'>("dark");
+  useEffect(()=>{
+      if (document.body.classList.contains('light-theme')) {
+        setTheme('light')
+      }
+  }, [])
   function handleTheme() {
     if (theme === 'dark') {
       document.body.classList.add('light-theme');
