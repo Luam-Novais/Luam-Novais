@@ -69,7 +69,7 @@ export function HeaderMobile() {
                 <Home />
                 Home
               </Link>
-              <Link href={''} className="header-link" onClick={handleClose}>
+              <Link href={'/about'} className="header-link" onClick={handleClose}>
                 <User />
                 Sobre
               </Link>
@@ -108,7 +108,7 @@ export function HeaderDesktop() {
           <Home />
           Home
         </Link>
-        <Link href={''} className="header-link">
+        <Link href={'/about'} className="header-link">
           <User />
           Sobre
         </Link>

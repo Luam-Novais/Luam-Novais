@@ -17,7 +17,9 @@ export default function Hero() {
             Luam novais<span className="text-violet-600">.</span>
           </h1>
         </div>
-        <p className="text w-full lg:w-3/4 text-base">Desenvolvo aplicações fullstack completas, combinando interfaces modernas com backends sólidos para oferecer experiências eficientes e envolventes aos usuários. Especialista em arquiteturas escaláveis e design sistêmico.</p>
+        <p className="text w-full lg:w-3/4 text-base">
+          Mais do que funcionalidades, construo <span className="font-bold title text-base! lowercase!">produtos bem projetados</span>. Aplicações rápidas, organizadas e preparadas para <span className="font-bold title text-base! lowercase!">crescer</span>.
+        </p>
 
         <div className="flex gap-12 mt-12">
           <Link href={''} className="w-full md:w-fit">
