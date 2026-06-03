@@ -23,7 +23,7 @@ export function HeaderMobile() {
 
     setTimeout(() => {
       setShowNav(true);
-    }, 700);
+    }, 300);
   }
 
   function handleClose() {
@@ -31,7 +31,7 @@ export function HeaderMobile() {
 
     setTimeout(() => {
       setIsOpen(false);
-    }, 500);
+    }, 300);
   }
 
   return (
