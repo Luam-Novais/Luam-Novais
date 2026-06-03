@@ -4,6 +4,7 @@ import { ArrowDownToLine, FolderGit2, Home, Layers, Menu, Send, User, X } from '
 import useMedia from '../hooks/useMedia';
 import Link from 'next/link';
 import { ThemeSwitch } from './animated-components';
+
 export default function Header() {
   const matches = useMedia('(max-width: 1024px)');
 
@@ -81,7 +82,7 @@ export function HeaderMobile() {
                 <Layers />
                 Stack
               </Link>
-              <Link href={''} className="header-link" onClick={handleClose}>
+              <Link href={'/contact'} className="header-link" onClick={handleClose}>
                 <Send />
                 Contato
               </Link>
@@ -116,16 +117,16 @@ export function HeaderDesktop() {
           <FolderGit2 />
           Projetos
         </Link>
-        <Link href={''} className="header-link">
+        <Link href={'/stacks'} className="header-link">
           <Layers />
           Stack
         </Link>
-        <Link href={''} className="header-link">
+        <Link href={'/contact'} className="header-link">
           <Send />
           Contato
         </Link>
       </nav>
-      <div className='flex justify-center items-center gap-2'>
+      <div className="flex justify-center items-center gap-2">
         <a href="" className="text-violet-600 bg-violet-600/10 px-4 py-2 rounded-md flex gap-2 items-center">
           Download CV
           <ArrowDownToLine size={20} />

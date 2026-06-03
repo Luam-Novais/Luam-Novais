@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Code2, Database, Server, Rocket,  MoveLeft} from 'lucide-react';
 import Link from 'next/link';
+import CodeAbout from '@/src/components/CodeAbout';
 
 export default function AboutPage() {
   return (
@@ -13,21 +14,15 @@ export default function AboutPage() {
           <MoveLeft />
         </Link>
       </div>
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[420px_1fr] lg:items-center">
-          {/* FOTO */}
-          {/* <div className="mx-auto">
-            <div className="bg-secondary default-shadow overflow-hidden rounded-[32px] border border-zinc-800/50">
-              <Image src="/me.png" alt="Luam Pablo" width={420} height={520} className="h-full w-full object-cover" />
-            </div>
-          </div> */}
-
+      <section className="px-4 py-16 sm:px-6 lg:px-8 appear">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1fr]">
+          <CodeAbout />
           {/* TEXTO */}
           <div className="space-y-8">
             <div className="space-y-5">
               <span className="text font-medium uppercase tracking-[0.2em] text-violet-500">Sobre mim</span>
 
-              <h1 className="title">Desenvolvedor Fullstack focado em criar produtos que unem experiência e performance.</h1>
+              <h1 className="title">Desenvolvedor Fullstack.</h1>
 
               <p className="text text-lg leading-relaxed">Sou desenvolvedor Fullstack formado em Análise e Desenvolvimento de Sistemas, apaixonado por tecnologia e pela criação de soluções que resolvem problemas reais. Ao longo da minha trajetória, desenvolvi projetos freelance para diferentes necessidades de negócio, transformando ideias em aplicações modernas e funcionais.</p>
 
@@ -41,7 +36,7 @@ export default function AboutPage() {
       <section className="px-4 py-24 sm:px-6 lg:px-8 bg-secondary">
         <div className="mx-auto max-w-5xl">
           <div className="space-y-8 text-center">
-            <span className="text font-medium uppercase tracking-[0.2em] text-violet-500">Minha história</span>
+            <span className="section-badge text">Minha história</span>
 
             <h2 className="title">Uma jornada movida por curiosidade.</h2>
 
@@ -58,7 +53,7 @@ export default function AboutPage() {
       <section className="px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 text-center">
-            <span className="text font-medium uppercase tracking-[0.2em] text-violet-500">Especialidades</span>
+            <span className="section-badge text">Especialidades</span>
 
             <h2 className="title mt-4">O que eu gosto de construir</h2>
           </div>
@@ -79,7 +74,7 @@ export default function AboutPage() {
       <section className="px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="mb-16 text-center">
-            <span className="text font-medium uppercase tracking-[0.2em] text-violet-500">Jornada</span>
+            <span className="section-badge text">Jornada</span>
 
             <h2 className="title mt-4">Minha evolução na programação</h2>
           </div>
@@ -108,7 +103,7 @@ function SkillCard({ icon, title, description }: SkillCardProps) {
     <article className="bg-secondary default-shadow rounded-[28px] border border-zinc-800/50 p-8">
       <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-600/10 text-violet-500">{icon}</div>
 
-      <h3 className="mb-4 font-poppins text-xl font-semibold text-[var(--title)]">{title}</h3>
+      <h3 className="mb-4 font-poppins text-xl font-semibold text-(--title)">{title}</h3>
 
       <p className="text">{description}</p>
     </article>
@@ -123,10 +118,10 @@ type TimelineItemProps = {
 
 function TimelineItem({ year, title, description }: TimelineItemProps) {
   return (
-    <div className="bg-secondary rounded-[24px] border border-zinc-800/50 p-6">
+    <div className="bg-secondary rounded-md border border-zinc-800/50 p-6">
       <span className="font-poppins text-sm font-medium text-violet-500">{year}</span>
 
-      <h3 className="mt-2 text-xl font-semibold text-[var(--title)]">{title}</h3>
+      <h3 className="mt-2 text-xl font-semibold text-(--title)">{title}</h3>
 
       <p className="text mt-3">{description}</p>
     </div>

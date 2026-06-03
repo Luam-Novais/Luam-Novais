@@ -1,18 +1,23 @@
 'use client';
-import Link from 'next/link';
+import { MoveLeft } from 'lucide-react';
 import { Mail, MessageCircle, ArrowUpRight } from 'lucide-react';
 import { FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa6';
 import { ContactCard } from '@/src/components/card';
-export function ContactSection() {
+import Link from 'next/link';
+
+export default function ContactSection() {
   return (
     <section className="default-layout bg-secondary default-shadow relative overflow-hidden">
-      {/* BACKGROUND */}
-      <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-violet-600/20 blur-3xl" />
-      <div className="absolute -bottom-24 right-0 h-64 w-64 rounded-full bg-violet-800/20 blur-3xl" />
+      <div className="px-4 py-8 title z-50">
+        <Link href={'/'}>
+          <MoveLeft />
+        </Link>
+      </div>
 
-      {/* CONTENT */}
-      <div className="relative grid gap-12 p-6 sm:p-8 md:p-12 xl:grid-cols-[1fr_420px] xl:gap-16">
-        {/* LEFT */}
+      <div className="absolute -right-24 top-0 h-64 w-64 rounded-full bg-violet-600/20 blur-3xl" />
+      <div className="absolute -bottom-24 left-0 h-64 w-64 rounded-full bg-violet-800/20 blur-3xl" />
+
+      <div className="relative grid gap-12 p-6 sm:p-8 md:p-12 xl:grid-cols-[1fr_420px] xl:gap-16 appear">
         <div className="flex flex-col gap-8">
           <div className="space-y-5 justify-self-center">
             <span className="section-badge text">Contato</span>
@@ -22,7 +27,6 @@ export function ContactSection() {
             <p className="text max-w-2xl text-base leading-relaxed sm:text-lg">Estou disponível para projetos freelance, oportunidades fullstack e colaborações. Caso tenha uma ideia, produto ou negócio, podemos transformar isso em algo real.</p>
           </div>
 
-          {/* CTA */}
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <Link href="mailto:seuemail@email.com" className="primary-btn justify-center sm:justify-start">
               Entrar em contato
@@ -31,7 +35,6 @@ export function ContactSection() {
           </div>
         </div>
 
-        {/* RIGHT */}
         <div className="bg-primary flex flex-col gap-5 rounded-md border border-zinc-800/50 p-5 md:p-8 w-full">
           <div className="space-y-2 w-full">
             <h3 className="font-poppins text-2xl font-semibold text-(--title)">Redes e contato</h3>
@@ -39,7 +42,6 @@ export function ContactSection() {
             <p className="text text-sm sm:text-base">Você pode falar comigo por qualquer uma dessas plataformas.</p>
           </div>
 
-          {/* LINKS */}
           <div className="flex flex-col gap-4">
             <ContactCard href="mailto:luampabl014@gmail.com" icon={<Mail size={20} />} title="Email" description="luampabl014@gmail.com" />
 

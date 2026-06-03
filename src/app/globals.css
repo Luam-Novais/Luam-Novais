@@ -27,7 +27,10 @@
 }
 .title{
   color: var(--title);
-  @apply capitalize font-poppins  text-4xl md:text-5xl
+  @apply capitalize font-poppins  text-4xl md:text-5xl;
+}
+.section-badge{
+  @apply font-medium uppercase tracking-[0.2em];
 }
 .text{
   color: var(--text);

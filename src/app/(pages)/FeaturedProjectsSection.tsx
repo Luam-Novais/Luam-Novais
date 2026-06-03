@@ -17,7 +17,7 @@ export default async function FeaturedProjectsSection() {
       <div className="mx-auto flex max-w-7xl flex-col gap-16">
         {/* HEADER */}
         <div className="flex flex-col gap-6">
-          <span className="text font-medium uppercase tracking-[0.2em] text-violet-500">Projetos</span>
+          <span className="section-badge text">Projetos</span>
 
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
