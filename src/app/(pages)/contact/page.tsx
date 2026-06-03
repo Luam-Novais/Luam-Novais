@@ -17,7 +17,7 @@ export default function ContactSection() {
       <div className="absolute -right-24 top-0 h-64 w-64 rounded-full bg-violet-600/20 blur-3xl" />
       <div className="absolute -bottom-24 left-0 h-64 w-64 rounded-full bg-violet-800/20 blur-3xl" />
 
-      <div className="relative grid gap-12 p-6 sm:p-8 md:p-12 xl:grid-cols-[1fr_420px] xl:gap-16 appear">
+      <div className="relative px-4 py-12 flex flex-col gap-6 appear">
         <div className="flex flex-col gap-8">
           <div className="space-y-5 justify-self-center">
             <span className="section-badge text">Contato</span>
@@ -27,12 +27,11 @@ export default function ContactSection() {
             <p className="text max-w-2xl text-base leading-relaxed sm:text-lg">Estou disponível para projetos freelance, oportunidades fullstack e colaborações. Caso tenha uma ideia, produto ou negócio, podemos transformar isso em algo real.</p>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-            <Link href="mailto:seuemail@email.com" className="primary-btn justify-center sm:justify-start">
+            <Link href="mailto:seuemail@email.com" className="w-fit primary-btn justify-center sm:justify-start">
               Entrar em contato
               <FaWhatsapp size={16} />
             </Link>
-          </div>
+
         </div>
 
         <div className="bg-primary flex flex-col gap-5 rounded-md border border-zinc-800/50 p-5 md:p-8 w-full">

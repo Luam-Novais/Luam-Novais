@@ -44,7 +44,7 @@ export function HeaderMobile() {
 
       {isOpen && (
         <>
-          {/* <div className="overlay bg-violet-600" /> */}
+          <div className="overlay bg-violet-600" />
 
           <nav
             className={`
@@ -78,7 +78,7 @@ export function HeaderMobile() {
                 <FolderGit2 />
                 Projetos
               </Link>
-              <Link href={''} className="header-link" onClick={handleClose}>
+              <Link href={'/stacks'} className="header-link" onClick={handleClose}>
                 <Layers />
                 Stack
               </Link>
