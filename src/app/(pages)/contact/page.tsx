@@ -1,9 +1,9 @@
 'use client';
+import Link from 'next/link';
 import { MoveLeft } from 'lucide-react';
 import { Mail, MessageCircle, ArrowUpRight } from 'lucide-react';
 import { FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa6';
 import { ContactCard } from '@/src/components/card';
-import Link from 'next/link';
 
 export default function ContactSection() {
   return (

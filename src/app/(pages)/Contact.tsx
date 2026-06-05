@@ -5,13 +5,13 @@ import { FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa6';
 import { ContactCard } from '@/src/components/card';
 export function ContactSection() {
   return (
-    <section className="default-layout bg-secondary default-shadow relative overflow-hidden">
+    <section className="default-layout bg-secondary default-shadow relative">
       {/* BACKGROUND */}
       <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-violet-600/20 blur-3xl" />
       <div className="absolute -bottom-24 right-0 h-64 w-64 rounded-full bg-violet-800/20 blur-3xl" />
 
       {/* CONTENT */}
-      <div className="relative grid gap-12 p-6 sm:p-8 md:p-12 xl:grid-cols-[1fr_420px] xl:gap-16">
+      <div className="relative flex flex-col gap-8 px-4 py-12">
         {/* LEFT */}
         <div className="flex flex-col gap-8">
           <div className="space-y-5 justify-self-center">

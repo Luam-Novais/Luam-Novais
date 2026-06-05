@@ -18,7 +18,7 @@ model User{
   password String @db.Text
 }
 enum ProjectType {
-  web
+  fullstack
   frontend
   backend
 }

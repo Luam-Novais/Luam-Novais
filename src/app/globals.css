@@ -32,6 +32,11 @@
 .section-badge{
   @apply font-medium uppercase tracking-[0.2em];
 }
+
+.filter-btn{
+  @apply px-6 py-3 rounded-lg border border-zinc-700;
+  color: var(--text);
+}
 .text{
   color: var(--text);
   font-family: var(--font-inter);
