@@ -1,15 +1,38 @@
-import Image from 'next/image';
+'use client';
 import Link from 'next/link';
 import { ArrowUpRight, GitCommit } from 'lucide-react';
 import type { Project } from '../../types/project.d.ts';
 import { HighlightProjectCard } from '@/src/components/card';
+import React, { useEffect, useRef, useState } from 'react';
 
 export enum ProjectType {
-  web = 'web',
-  mobile = 'frontend',
+  fullstack = 'fullstack',
+  frontend = 'frontend',
   backend = 'backend',
 }
-export default async function FeaturedProjectsSection() {
+export default function FeaturedProjectsSection() {
+  const cardRef = useRef<HTMLLIElement[]>([]);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      { threshold: 0 },
+    );
+    if (cardRef.current) {
+      cardRef.current.forEach((el) => {
+        observer.observe(el);
+      });
+    }
+    return () => observer.disconnect();
+  }, []);
   const featuredProjects = projects.filter((project) => project.featured).slice(0, 2);
 
   return (
@@ -37,7 +60,15 @@ export default async function FeaturedProjectsSection() {
         <ul className="grid grid-cols-1 gap-10 xl:grid-cols-2">
           {featuredProjects.map((project, index) => {
             return (
-              <li key={project.id}>
+              <li
+                className={`${isVisible ? 'appear-left' : ''}`}
+                key={project.id}
+                ref={(element) => {
+                  if (element) {
+                    cardRef.current[index] = element;
+                  }
+                }}
+              >
                 <HighlightProjectCard project={project} index={index} />
               </li>
             );
@@ -58,7 +89,7 @@ const projects: Project[] = [
     repositoryUrl: 'https://github.com',
     liveUrl: 'https://google.com',
     featured: true,
-    type: ProjectType.web,
+    type: ProjectType.fullstack,
   },
 
   {

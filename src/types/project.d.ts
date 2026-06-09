@@ -1,7 +1,7 @@
 
 export enum ProjectType {
-  web = 'fullstack',
-  mobile = 'frontend',
+  fullstack = 'fullstack',
+  frontend = 'frontend',
   backend = 'backend',
 }
 export interface Project {

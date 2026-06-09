@@ -61,7 +61,7 @@ export default function AboutPage() {
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             <SkillCard icon={<Code2 />} title="Frontend" description="Interfaces modernas utilizando React, Next.js e TypeScript." />
 
-            <SkillCard icon={<Server />} title="Backend" description="APIs escaláveis com Node.js, Express e Fastify." />
+            <SkillCard icon={<Server />} title="Backend" description="APIs escaláveis com Node.js, usando frameworks como Nest.js, Express e Fastify." />
 
             <SkillCard icon={<Database />} title="Banco de Dados" description="Modelagem, Prisma ORM, PostgreSQL e SQLite." />
 

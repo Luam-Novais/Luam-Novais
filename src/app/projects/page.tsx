@@ -2,10 +2,11 @@ import { ProjectCard } from '@/src/components/card';
 import { Project } from '@/src/types/project';
 import Link from 'next/link';
 import { MoveLeft } from 'lucide-react';
+import { LayoutGrid, Monitor, Server, Layers } from 'lucide-react';
 
 export enum ProjectType {
-  web = 'fullstack',
-  mobile = 'frontend',
+  fullstack = 'fullstack',
+  frontend = 'frontend',
   backend = 'backend',
 }
 export default function ProjectsPage() {
@@ -44,13 +45,21 @@ function ProjectsHero() {
 function ProjectsFilters() {
   return (
     <div className="mb-12 flex gap-6 overflow-x-scroll">
-      <button className="primary-btn">Todos</button>
+      <button className="primary-btn">
+        Todos <LayoutGrid size={16} />{' '}
+      </button>
 
-      <button className="filter-btn">fullstack</button>
+      <button className="filter-btn">
+        fullstack <Layers size={16} />
+      </button>
 
-      <button className="filter-btn">frontend</button>
+      <button className="filter-btn">
+        frontend <Monitor size={16} />
+      </button>
 
-      <button className="filter-btn">Backend</button>
+      <button className="filter-btn">
+        Backend <Server size={16} />
+      </button>
     </div>
   );
 }
@@ -92,7 +101,7 @@ const projects: Project[] = [
     repositoryUrl: 'https://github.com',
     liveUrl: 'https://google.com',
     featured: true,
-    type: ProjectType.web,
+    type: ProjectType.fullstack,
   },
 
   {
