@@ -5,8 +5,8 @@ import { Input } from '@/src/components/Input';
 import type { ProjectDTO } from '@/src/types/project.d.ts';
 
 enum ProjectType {
-  web = 'web',
-  mobile = 'frontend',
+  fullstack = 'fullstack',
+  frontend = 'frontend',
   backend = 'backend',
 }
 export default function CreateProjectPage() {
@@ -18,7 +18,7 @@ export default function CreateProjectPage() {
   } = useForm<ProjectDTO>({
     defaultValues: {
       featured: false,
-      type: ProjectType.web,
+      type: ProjectType.fullstack,
       images: [{ file: undefined as any }],
     },
   });
@@ -139,8 +139,8 @@ export default function CreateProjectPage() {
               <label className="text-sm font-medium">Tipo</label>
 
               <select {...register('type')} className="w-full rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none focus:border-violet-500">
-                <option value={ProjectType.web}>Web</option>
-                <option value={ProjectType.mobile}>Frontend</option>
+                <option value={ProjectType.fullstack}>Fullstack</option>
+                <option value={ProjectType.frontend}>Frontend</option>
                 <option value={ProjectType.backend}>Backend</option>
               </select>
             </div>

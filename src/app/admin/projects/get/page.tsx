@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { Pencil, Trash2, ExternalLink, GitCommit, Plus } from 'lucide-react';
 
 enum ProjectType {
-  web = 'web',
-  mobile = 'mobile',
+  fullstack = 'fullstack',
+  frontend = 'frontend',
   backend = 'backend',
 }
 
@@ -35,7 +35,7 @@ const projects: Project[] = [
     repositoryUrl: 'https://github.com',
     liveUrl: 'https://google.com',
     featured: true,
-    type: ProjectType.web,
+    type: ProjectType.fullstack,
     createdAt: '2026-05-20',
   },
 
