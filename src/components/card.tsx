@@ -118,7 +118,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* ACTIONS */}
-        <div className="flex gap-3">
+        <div className="flex items-center justify-between gap-3">
           {project.liveUrl && (
             <Link href={project.liveUrl} target="_blank" className="primary-btn">
               Ver projeto

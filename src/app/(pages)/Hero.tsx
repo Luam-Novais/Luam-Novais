@@ -22,7 +22,7 @@ export default function Hero() {
         </p>
 
         <div className="flex gap-12 mt-12">
-          <Link href={''} className="w-full md:w-fit">
+          <Link href={'/projects'} className="w-full md:w-fit">
             <PrimaryButton>
               ver projetos
               <MoveRight size={20} />
