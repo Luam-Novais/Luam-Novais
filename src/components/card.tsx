@@ -90,12 +90,12 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="bg-secondary default-shadow overflow-hidden rounded-[32px] border border-zinc-800/50 transition-all duration-500 hover:-translate-y-2">
+    <article className="bg-secondary default-shadow overflow-hidden rounded-md border border-zinc-800/50 transition-all duration-500 hover:-translate-y-2">
       {/* IMAGE */}
       <div className="relative h-64 overflow-hidden">
         <Image src={project.thumbnail} alt={project.title} fill className="object-cover transition duration-700 hover:scale-105" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
 
         <span className="absolute left-5 top-5 rounded-full bg-violet-600 px-4 py-2 text-sm text-white">{project.type}</span>
       </div>
@@ -103,7 +103,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* CONTENT */}
       <div className="space-y-6 p-8">
         <div>
-          <h3 className="mb-3 font-poppins text-2xl font-semibold text-[var(--title)]">{project.title}</h3>
+          <h3 className="mb-3 font-poppins text-2xl font-semibold text-(--title)">{project.title}</h3>
 
           <p className="text">{project.shortDescription}</p>
         </div>
