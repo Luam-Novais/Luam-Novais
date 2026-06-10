@@ -24,7 +24,7 @@ export function ContactSection() {
 
           {/* CTA */}
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-            <Link href="mailto:seuemail@email.com" className="primary-btn justify-center sm:justify-start">
+            <Link href="mailto:luampabl014@gmail.com" className="primary-btn justify-center sm:justify-start">
               Entrar em contato
               <FaWhatsapp size={16} />
             </Link>

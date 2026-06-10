@@ -34,7 +34,7 @@ const socialLinks = [
   },
   {
     icon: Mail,
-    href: 'mailto:seuemail@email.com',
+    href: 'mailto:luampabl014@gmail.com',
   },
 ];
 
@@ -53,7 +53,7 @@ export function Footer() {
             </div>
 
             {/* CTA */}
-            <Link href="mailto:seuemail@email.com" className="primary-btn w-fit justify-center sm:justify-start">
+            <Link href="mailto:luampabl014@gmail.com" className="primary-btn w-fit justify-center sm:justify-start">
               Vamos conversar
               <ArrowUpRight size={18} />
             </Link>
