@@ -1,8 +1,10 @@
 'use client';
-
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Pencil, Trash2, ExternalLink, GitCommit, Plus } from 'lucide-react';
+import { Loading } from '@/src/components/loading';
+import { json } from 'stream/consumers';
 
 enum ProjectType {
   fullstack = 'fullstack',
@@ -24,45 +26,38 @@ type Project = {
   createdAt: string;
 };
 
-const projects: Project[] = [
-  {
-    id: '1',
-    title: 'Portfolio Fullstack',
-    slug: 'portfolio-fullstack',
-    shortDescription: 'Portfólio moderno com dashboard admin.',
-    thumbnail: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-    tags: ['Next.js', 'TypeScript', 'Prisma'],
-    repositoryUrl: 'https://github.com',
-    liveUrl: 'https://google.com',
-    featured: true,
-    type: ProjectType.fullstack,
-    createdAt: '2026-05-20',
-  },
-
-  {
-    id: '2',
-    title: 'API Financeira',
-    slug: 'api-financeira',
-    shortDescription: 'Backend robusto para controle financeiro.',
-    thumbnail: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c',
-    tags: ['Node.js', 'Fastify', 'Postgres'],
-    repositoryUrl: 'https://github.com',
-    featured: false,
-    type: ProjectType.backend,
-    createdAt: '2026-05-18',
-  },
-];
-
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    async function fecthProjects() {
+      try {
+        setLoading(true);
+        const response = await fetch('http://localhost:3000/api/projects');
+        const projects = await response.json();
+        if (response.ok) {
+          setProjects(projects);
+        }
+      } catch (error: any) {
+        setProjects(null);
+        console.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fecthProjects();
+  }, []);
   async function handleDeleteProject(id: string) {
     const confirmed = confirm('Deseja realmente excluir este projeto?');
 
     if (!confirmed) return;
 
     try {
-      // await fetch(`/api/projects/${id}`, {
-      //   method: "DELETE",
-      // })
+      await fetch(`/api/projects`, {
+        method: 'DELETE',
+        body: JSON.stringify({id:id}),
+      });
 
       console.log('Projeto removido:', id);
     } catch (error) {
@@ -70,6 +65,9 @@ export default function ProjectsPage() {
     }
   }
 
+  if (loading) {
+    return <Loading text="buscando projetos..." />;
+  }
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
       <div className="mx-auto max-w-7xl">
@@ -89,78 +87,79 @@ export default function ProjectsPage() {
 
         {/* GRID */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
-            <div key={project.id} className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900">
-              {/* IMAGE */}
-              <div className="relative h-52 w-full">
-                {/* <Image src={project.thumbnail} alt={project.title} fill className="object-cover" /> */}
+          {projects &&
+            projects.map((project) => (
+              <div key={project.id} className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900">
+                {/* IMAGE */}
+                <div className="relative h-52 w-full">
+                  <Image src={project.thumbnail} alt={project.title} fill className="object-cover" />
 
-                {project.featured && <div className="absolute left-4 top-4 rounded-full bg-violet-600 px-3 py-1 text-xs font-medium">Destaque</div>}
-              </div>
+                  {project.featured && <div className="absolute left-4 top-4 rounded-full bg-violet-600 px-3 py-1 text-xs font-medium">Destaque</div>}
+                </div>
 
-              {/* CONTENT */}
-              <div className="space-y-5 p-5">
-                <div>
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <h2 className="line-clamp-1 text-xl font-semibold">{project.title}</h2>
+                {/* CONTENT */}
+                <div className="space-y-5 p-5">
+                  <div>
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <h2 className="line-clamp-1 text-xl font-semibold">{project.title}</h2>
 
-                    <span className="rounded-full border border-zinc-700 px-3 py-1 text-xs capitalize text-zinc-300">{project.type}</span>
+                      <span className="rounded-full border border-zinc-700 px-3 py-1 text-xs capitalize text-zinc-300">{project.type}</span>
+                    </div>
+
+                    <p className="line-clamp-3 text-sm leading-relaxed text-zinc-400">{project.shortDescription}</p>
                   </div>
 
-                  <p className="line-clamp-3 text-sm leading-relaxed text-zinc-400">{project.shortDescription}</p>
-                </div>
+                  {/* TAGS */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
 
-                {/* TAGS */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-300">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                  {/* LINKS */}
+                  <div className="flex items-center gap-3">
+                    {project.repositoryUrl && (
+                      <a href={project.repositoryUrl} target="_blank" className="flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white">
+                        <GitCommit size={16} />
+                        Repositório
+                      </a>
+                    )}
 
-                {/* LINKS */}
-                <div className="flex items-center gap-3">
-                  {project.repositoryUrl && (
-                    <a href={project.repositoryUrl} target="_blank" className="flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white">
-                      <GitCommit size={16} />
-                      Repositório
-                    </a>
-                  )}
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" className="flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white">
+                        <ExternalLink size={16} />
+                        Deploy
+                      </a>
+                    )}
+                  </div>
 
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" className="flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white">
-                      <ExternalLink size={16} />
-                      Deploy
-                    </a>
-                  )}
-                </div>
+                  {/* FOOTER */}
+                  <div className="flex items-center justify-between border-t border-zinc-800 pt-4">
+                    <span className="text-xs text-zinc-500">{new Date(project.createdAt).toLocaleDateString('pt-BR')}</span>
 
-                {/* FOOTER */}
-                <div className="flex items-center justify-between border-t border-zinc-800 pt-4">
-                  <span className="text-xs text-zinc-500">{new Date(project.createdAt).toLocaleDateString('pt-BR')}</span>
+                    <div className="flex items-center gap-2">
+                      {/* EDIT */}
+                      <Link href={`/admin/projects/${project.id}`} className="flex items-center gap-2 rounded-xl border border-zinc-700 px-4 py-2 text-sm transition hover:bg-zinc-800">
+                        <Pencil size={16} />
+                        Editar
+                      </Link>
 
-                  <div className="flex items-center gap-2">
-                    {/* EDIT */}
-                    <Link href={`/admin/projects/${project.id}`} className="flex items-center gap-2 rounded-xl border border-zinc-700 px-4 py-2 text-sm transition hover:bg-zinc-800">
-                      <Pencil size={16} />
-                      Editar
-                    </Link>
-
-                    {/* DELETE */}
-                    <button onClick={() => handleDeleteProject(project.id)} className="flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-2 text-sm text-red-400 transition hover:bg-red-500/20">
-                      <Trash2 size={16} />
-                      Excluir
-                    </button>
+                      {/* DELETE */}
+                      <button onClick={() => handleDeleteProject(project.id)} className="flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-2 text-sm text-red-400 transition hover:bg-red-500/20">
+                        <Trash2 size={16} />
+                        Excluir
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         {/* EMPTY STATE */}
-        {projects.length === 0 && (
+        {projects && projects.length === 0 && (
           <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-zinc-800 py-24 text-center">
             <h2 className="text-2xl font-semibold">Nenhum projeto encontrado</h2>
 

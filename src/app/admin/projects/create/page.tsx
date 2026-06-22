@@ -3,6 +3,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
 import { Input } from '@/src/components/Input';
 import type { ProjectDTO } from '@/src/types/project.d.ts';
+import { uploadImage } from '@/src/service/upload.services';
 
 enum ProjectType {
   fullstack = 'fullstack',
@@ -29,22 +30,26 @@ export default function CreateProjectPage() {
   });
 
   async function onSubmit(data: ProjectDTO) {
+    const thumbnailFile = data.thumbnail[0];
+    const thumbnail = await uploadImage(thumbnailFile);
+
     const payload = {
       ...data,
+      thumbnail: thumbnail,
       tags: data.tags
         .split(',')
         .map((tag) => tag.trim())
         .filter(Boolean),
     };
 
-    // Exemplo:
-    // await fetch("/api/projects", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(payload),
-    // })
+    const res = await fetch('/api/projects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (res.ok) alert('Projeto criado com sucesso.');
   }
 
   return (
@@ -115,8 +120,7 @@ export default function CreateProjectPage() {
           {/* THUMBNAIL */}
           <Input
             type="file"
-            label="Thumbnail URL"
-            placeholder="https://..."
+            label="Thumbnail"
             register={register('thumbnail', {
               required: 'Thumbnail obrigatória',
             })}
@@ -153,7 +157,7 @@ export default function CreateProjectPage() {
           </div>
 
           {/* IMAGES */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold">Imagens do projeto</h2>
 
@@ -189,7 +193,7 @@ export default function CreateProjectPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* SUBMIT */}
           <button type="submit" disabled={isSubmitting} className="w-full rounded-2xl bg-violet-600 py-4 font-semibold hover:bg-violet-500 transition disabled:opacity-50">

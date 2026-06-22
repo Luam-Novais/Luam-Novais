@@ -9,10 +9,13 @@ export enum ProjectType {
   frontend = 'frontend',
   backend = 'backend',
 }
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const response = await fetch('http://localhost:3000/api/projects');
+  const projects = await response.json();
+
   return (
     <main className="default-layout">
-      <div className="px-4 py-8 title z-50">
+      <div className="px-4 py-4 title z-50">
         <Link href={'/'}>
           <MoveLeft />
         </Link>
@@ -20,9 +23,8 @@ export default function ProjectsPage() {
 
       <ProjectsHero />
 
-      <ProjectsFilters />
-
-      <ProjectsGrid />
+      {projects && projects.length > 0 && <ProjectsFilters />}
+      <ProjectsGrid projects={projects} />
 
       <ProjectsCTA />
     </main>
@@ -31,7 +33,7 @@ export default function ProjectsPage() {
 
 function ProjectsHero() {
   return (
-    <section className="px-4 py-24">
+    <section className="px-4 py-8">
       <div className="mx-auto max-w-7xl">
         <span className="section-eyebrow">Projetos</span>
 
@@ -63,15 +65,15 @@ function ProjectsFilters() {
     </div>
   );
 }
-function ProjectsGrid() {
+function ProjectsGrid({ projects }: { projects: Project[] }) {
   return (
     <section className="px-4 pb-24">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {projects.length > 0 ? <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
+        </div> : <div className='title'>Sem projetos por enquanto.</div>}
       </div>
     </section>
   );
@@ -90,29 +92,29 @@ function ProjectsCTA() {
   );
 }
 
-const projects: Project[] = [
-  {
-    id: '1',
-    title: 'Portfolio Fullstack',
-    slug: 'portfolio-fullstack',
-    shortDescription: 'Portfólio moderno com dashboard administrativo, animações suaves e gerenciamento completo de projetos.',
-    thumbnail: '/images/project-1.png',
-    tags: ['Next.js', 'TypeScript', 'Prisma', 'Tailwind'],
-    repositoryUrl: 'https://github.com',
-    liveUrl: 'https://google.com',
-    featured: true,
-    type: ProjectType.fullstack,
-  },
+// const projects: Project[] = [
+//   {
+//     id: '1',
+//     title: 'Portfolio Fullstack',
+//     slug: 'portfolio-fullstack',
+//     shortDescription: 'Portfólio moderno com dashboard administrativo, animações suaves e gerenciamento completo de projetos.',
+//     thumbnail: '/images/project-1.png',
+//     tags: ['Next.js', 'TypeScript', 'Prisma', 'Tailwind'],
+//     repositoryUrl: 'https://github.com',
+//     liveUrl: 'https://google.com',
+//     featured: true,
+//     type: ProjectType.fullstack,
+//   },
 
-  {
-    id: '2',
-    title: 'Dance School Manager',
-    slug: 'dance-school-manager',
-    shortDescription: 'Sistema desktop para gerenciamento de turmas, alunos e pagamentos de uma escola de dança.',
-    thumbnail: '/images/project-2.png',
-    tags: ['Electron', 'React', 'SQLite', 'Node.js'],
-    repositoryUrl: 'https://github.com',
-    featured: true,
-    type: ProjectType.backend,
-  },
-];
+//   {
+//     id: '2',
+//     title: 'Dance School Manager',
+//     slug: 'dance-school-manager',
+//     shortDescription: 'Sistema desktop para gerenciamento de turmas, alunos e pagamentos de uma escola de dança.',
+//     thumbnail: '/images/project-2.png',
+//     tags: ['Electron', 'React', 'SQLite', 'Node.js'],
+//     repositoryUrl: 'https://github.com',
+//     featured: true,
+//     type: ProjectType.backend,
+//   },
+// ];

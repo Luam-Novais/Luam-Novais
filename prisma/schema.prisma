@@ -17,11 +17,6 @@ model User{
   username String @db.VarChar(20)
   password String @db.Text
 }
-enum ProjectType {
-  fullstack
-  frontend
-  backend
-}
 
 model Project {
   id               String   @id @default(cuid())
@@ -41,9 +36,7 @@ model Project {
 
   featured         Boolean  @default(false)
 
-  type             ProjectType
-
-  images           ProjectImage[]
+  type             String
 
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
@@ -54,6 +47,5 @@ model ProjectImage {
 
   url       String
 
-  project   Project  @relation(fields: [projectId], references: [id])
-  projectId String
+  projectId String 
 }
