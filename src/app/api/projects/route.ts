@@ -9,7 +9,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    console.log(body)
+    console.log(body);
     const projectCreated = await prisma.project.create({
       data: {
         title: body.title,
@@ -21,28 +21,36 @@ export async function POST(request: Request) {
         liveUrl: body.liveUrl,
         repositoryUrl: body.repositoryUrl,
         featured: body.featured,
-        tags: body.tags
+        tags: body.tags,
       },
     });
     return Response.json({ ok: true });
   } catch (error) {
-    console.log(error)
-    return Response.json({ok: false, data: 'falha ao criar projeto.'})
+    console.log(error);
+    return Response.json({ ok: false, data: 'falha ao criar projeto.' });
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(request: NextRequest) {
   try {
-     const {id} = await request.json();
+    const { id } = await request.json();
 
-     const projectDeleted = await prisma.project.delete({
-      where:{
-        id: id
-      }
-     })
-    return Response.json({ ok: true, data: 'projeto excluido com sucesso.' });
+    if (!id) {
+      return Response.json({ ok: false, data: 'id não enviado' }, { status: 400 });
+    }
 
+    await prisma.project.delete({
+      where: { id },
+    });
+
+    return Response.json({
+      ok: true,
+      data: 'projeto excluído com sucesso.',
+    });
   } catch (error) {
-    return Response.json({ ok: false, data: 'falha ao excluir projeto.' });
+    return Response.json({
+      ok: false,
+      data: 'falha ao excluir projeto.',
+    });
   }
 }
