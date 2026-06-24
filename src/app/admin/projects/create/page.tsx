@@ -30,26 +30,31 @@ export default function CreateProjectPage() {
   });
 
   async function onSubmit(data: ProjectDTO) {
-    const thumbnailFile = data.thumbnail[0];
-    const thumbnail = await uploadImage(thumbnailFile);
+    try {
+      const thumbnailFile = data.thumbnail[0];
+      const thumbnail = await uploadImage(thumbnailFile);
 
-    const payload = {
-      ...data,
-      thumbnail: thumbnail,
-      tags: data.tags
-        .split(',')
-        .map((tag) => tag.trim())
-        .filter(Boolean),
-    };
+      const payload = {
+        ...data,
+        thumbnail: thumbnail,
+        tags: data.tags
+          .split(',')
+          .map((tag) => tag.trim())
+          .filter(Boolean),
+      };
 
-    const res = await fetch('/api/projects', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) alert('Projeto criado com sucesso.');
+      const res = await fetch('/api/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) alert('Projeto criado com sucesso.');
+    } catch (error) {
+      console.error(error);
+      alert('falha ao criar projeto.');
+    }
   }
 
   return (
